@@ -13,6 +13,8 @@
     <style>
       * {
         font-family: 'Poppins', sans-serif;
+        padding:0;
+        margin:0;
       }
 
       .h-font {
@@ -45,9 +47,9 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul class="navbar-nav ms-auto me-5 mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link me-2 " a href="#">Home</a>
+              <a class="nav-link me-2 " a href="index.php">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link me-2 " href="#">Events</a>
@@ -115,7 +117,7 @@
         <div class="modal-content">
           <form action="">
             <div class="modal-header">
-              <h5 class="modal-title d-flex align-items-center">
+              <h5 class="modal-title fs-2 ">
                 Create your account
               </h5>
               <button type="reset" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -123,7 +125,7 @@
             <div class="modal-body">
 
               <span class="badge rounded-pill text-bg-light mb-3 text-wrap lh-base">
-                Note: Please fill all the details below. * fields are necessary to fill.
+                 * fields are necessary to fill.
               </span>
               <div class="container-fluid">
                 <div class="row">
