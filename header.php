@@ -103,6 +103,9 @@
                 <button class="btn btn-dark shadow-none">Login</button>
                 <a href="javascript: void(0)" class="text-secondary text-decoration-none">Forgot Password?</a>
               </div>
+              <div class="text-center">
+                <p class="mt-5">Do not have an account?<a href="" class="text-decoration-none text-dark fw-bold data-bs-toggle="modal" data-bs-target="#registermodal"> Register</a></p>
+              </div>
             </div>
 
           </form>
