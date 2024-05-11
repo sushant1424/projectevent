@@ -50,11 +50,12 @@ if ((isset($_SESSION['adminLogin']) && $_SESSION['adminLogin'] == true)) {
 
   <?php
   if (isset($_POST['admin_login'])) {
-    $frm_data = filtration($_POST);
+    $frm_data = filtration($_POST); //$_POST gets in array 
     $query = "SELECT * FROM `admin_credentials` WHERE `admin_name`=? AND `admin_pass`=?";
-    $values = [$frm_data['admin_name'], $frm_data['admin_pass']];
-    $res = select($query, $values, "ss");
-    if ($res->num_rows == 1) {
+    //=? are placeholder for values that will be behold later
+    $values = [$frm_data['admin_name'], $frm_data['admin_pass']]; //values for placeholder from user input
+    $res = select($query, $values, "ss"); //sending parameter to res fucntion
+    if ($res->num_rows == 1) { //if user has logged in successfully
       $row = mysqli_fetch_assoc($res);
       $_SESSION['adminLogin'] = true;
       $_SESSION['adminID'] = $row['id'];

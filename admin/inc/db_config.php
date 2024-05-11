@@ -9,13 +9,15 @@ if (!$conn) {
   die("Cannot coonect to database " . mysqli_connect_error());
 }
 
+
+//to filter the entered data
 function filtration($data)
 {
   foreach ($data as $key => $value) {
-    $data[$key] = trim($value);
-    $data[$key] = stripslashes($value);
-    $data[$key] = htmlspecialchars($value);
-    $data[$key] = strip_tags($value);
+    $data[$key] = trim($value); // to remove spaces
+    $data[$key] = stripslashes($value); //to remove backslashes
+    $data[$key] = htmlspecialchars($value); // to convert special chars into html entity
+    $data[$key] = strip_tags($value); //to remove html tags
   }
   return $data;
 }
@@ -23,7 +25,7 @@ function filtration($data)
 function select($sql, $values, $datatypes)
 {
   $conn = $GLOBALS['conn'];
-  if ($stmt = mysqli_prepare($conn, $sql)) {
+  if ($stmt = mysqli_prepare($conn, $sql)) {//prepares sql statement for execution
     mysqli_stmt_bind_param($stmt, $datatypes, ...$values); //... is splat operator allows arbitary number of parameters
     if (mysqli_stmt_execute(($stmt))) {
       $res = mysqli_stmt_get_result($stmt);
