@@ -18,7 +18,7 @@
   <!-- Main Content -->
   <div class="container-fluid">
     <div class="row px-3">
-      <div class="col-md-6 pt-5 ">
+      <div class="col-md-6" style="padding-top:100px;">
         <h1 class="display-3 fw-bold">Elevate Your <span style="color: aquamarine;">Events</span> and <span style="color:orange">Memories</span> With Us.</h1>
         <p class="fs-5">Looking for a great place to organize and manage your events? You are in the right place.</p>
         <button type="button" class="btn  mt-3 shadow-none px-md-3" data-bs-toggle="modal" data-bs-target="#registermodal" style="
@@ -28,7 +28,7 @@
           Get Started
         </button>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 ">
         <img src="images/coverimage.jpg" width="100%" class="image-fluid" alt="">
       </div>
     </div>
