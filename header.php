@@ -10,30 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <style>
-      * {
-        font-family: 'Poppins', sans-serif;
-        padding:0;
-        margin:0;
-      }
+    <link rel="stylesheet" href="css/style.css">
 
-      .h-font {
-        font-family: 'Merienda', cursive;
-      }
-
-      /* Chrome, Safari, Edge, Opera */
-      input::-webkit-outer-spin-button,
-      input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-      }
-
-      /* Firefox */
-      input[type=number] {
-        -moz-appearance: textfield;
-      }
-      
-    </style>
 
   </head>
 
@@ -58,7 +36,7 @@
               <a class="nav-link me-2 " href="#">Services</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link me-2 " href="#">Contact</a>
+              <a class="nav-link me-2 " href="contact.php">Contact</a>
             </li>
             <li class="nav-item">
               <a class="nav-link me-2 " href="#">About</a>
@@ -77,6 +55,7 @@
         </div>
       </div>
     </nav>
+    <!-- navbar -->
 
     <!-- loginmodal -->
     <div class="modal fade" id="loginmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -104,7 +83,7 @@
                 <a href="javascript: void(0)" class="text-secondary text-decoration-none">Forgot Password?</a>
               </div>
               <div class="text-center">
-                <p class="mt-5">Do not have an account?<a href="" class="text-decoration-none text-dark fw-bold data-bs-toggle="modal" data-bs-target="#registermodal"> Register</a></p>
+                <p class="mt-5">Do not have an account?<a href="" class="text-decoration-none text-dark fw-bold data-bs-toggle=" modal" data-bs-target="#registermodal"> Register</a></p>
               </div>
             </div>
 
@@ -113,6 +92,7 @@
 
       </div>
     </div>
+    <!-- loginmodal -->
 
     <!-- registermodal -->
     <div class="modal fade" id="registermodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -128,7 +108,7 @@
             <div class="modal-body">
 
               <span class="badge rounded-pill text-bg-light mb-3 text-wrap lh-base">
-                 * fields are necessary to fill.
+                * fields are necessary to fill.
               </span>
               <div class="container-fluid">
                 <div class="row">
@@ -171,7 +151,7 @@
               <div>
                 <button type="submit" class="btn btn-dark shadow-none">Register</button>
               </div>
-             
+
             </div>
 
           </form>
@@ -179,6 +159,7 @@
 
       </div>
     </div>
+    <!-- registermodal -->
 
 
 
@@ -186,11 +167,7 @@
 
 
 
-    <!-- bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-    <!-- swiperjs -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   </body>
 
   </html>
