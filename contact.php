@@ -27,7 +27,8 @@
         <a href="tel: +977 9840594557" class="d-inline-block text-decoration-none text-dark"><i class="bi bi-telephone-fill me-1"></i>+977 9840594557</a>
 
         <h5 class="mt-4">Email Us:</h5>
-        <a href="maito: shresthasushant272@gmail.com" class="d-inline-block mb-2 text-decoration-none text-dark"><i class="bi bi-envelope-fill me-1"></i>shresthasushant272@gmail.com</a>
+        <a href="maito: shresthasushant272@gmail.com" class="d-inline-block mb-2 text-decoration-none text-dark"><i class="bi bi-envelope-fill me-1"></i>shresthasushant272@gmail.com</a><br>
+        <a href="maito: lamichhanebisakha@gmail.com" class="d-inline-block mb-2 text-decoration-none text-dark"><i class="bi bi-envelope-fill me-1"></i>lamichhanebisakha@gmail.com</a>
 
       </div>
       <div class="col-lg-6 col-md-6 mt-3 shadow p-5">
