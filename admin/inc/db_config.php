@@ -40,3 +40,23 @@ function select($sql, $values, $datatypes)
     die("Query cannot be prepared - SELECT");
   }
 }
+
+function update($sql, $values, $datatypes)
+{
+  $conn = $GLOBALS['conn'];
+  if ($stmt = mysqli_prepare($conn, $sql)) {//prepares sql statement for execution
+    mysqli_stmt_bind_param($stmt, $datatypes, ...$values); //... is splat operator allows arbitary number of parameters
+    if (mysqli_stmt_execute(($stmt))) {
+      $res = mysqli_stmt_affected_rows($stmt);
+      mysqli_stmt_close($stmt);
+
+      return $res;
+    } else {
+      mysqli_stmt_close($stmt);
+      die("Query cannot be executed - UPDATE");
+    }
+  } else {
+    die("Query cannot be prepared - UPDATE");
+  }
+}
+
