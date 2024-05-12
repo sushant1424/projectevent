@@ -1,6 +1,9 @@
 <?php
 require('inc/essentials.php');
 adminLogin();
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,12 +15,20 @@ adminLogin();
   <?php
   require('inc/links.php');
   ?>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body class="bg-light">
-  <div class="container-fluid bg-white text-dark p-3 d-flex align-items-center justify-content-between">
-    <img src="../images/logo.png" alt="" width="250px" class="image-fluid">
-    <a href="logout.php" class="btn btn-light btn-sm">Log Out</a>
+  <?php
+  require('inc/header.php');
+  ?>
+
+  <div class="container-fluid" id="main-content">
+    <div class="row">
+      <div class="col-lg-10 ms-auto p-3 overflow-hidden">
+   
+      </div>
+    </div>
   </div>
   <?php
   require('inc/script.php');
