@@ -15,8 +15,10 @@ if ((isset($_SESSION['adminLogin']) && $_SESSION['adminLogin'] == true)) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Panel</title>
   <?php
-  require('inc/links.php');
+  require_once('inc/links.php');
   ?>
+  <link rel="stylesheet" href="css/style.css">
+
   <style>
     .login-form {
       position: absolute;
