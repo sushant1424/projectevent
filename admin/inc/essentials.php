@@ -1,5 +1,11 @@
 <?php
 
+
+//upload function in backend
+
+define('UPLOAD_IMAGE_PATH',$_SERVER['DOCUMENT_ROOT'].'/PROJECTEVENT/projectevent/images');
+define('GALLERY_FOLDER','gallery/');
+
 function adminLogin()
 {
   session_start();

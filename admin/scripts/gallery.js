@@ -16,7 +16,7 @@ function add_picture(){
 
 
   let xhr = new XMLHttpRequest();
-      xhr.open("POST", "ajax/settings_crud.php", true);
+      xhr.open("POST", "ajax/images_crud.php", true);
       xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
       xhr.onload = function() {
@@ -43,7 +43,14 @@ function add_picture(){
 
 
 
-    window.onload = function() {
-     
-    }
-}
+   function get_picture()
+   {
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "ajax/settings_crud.php", true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function() {
+    document.getElementById('galary-data').innerHTML = this.responseText;      
+
+   }
+   xhr.send('get_picture');
+}}

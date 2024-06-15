@@ -27,7 +27,7 @@
   $values = [1];
   $contact_result = mysqli_fetch_assoc(select($contact_query,$values,'i'));
   ?>
-
+  
 
     <!-- navbar -->
     <nav id="nav-bar" class="navbar navbar-expand-lg bg-white px-lg-3 py-lg-2 shadow-sm sticky-top">

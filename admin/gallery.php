@@ -53,8 +53,9 @@ adminLogin();
                  
 
                   <div class=" mb-3">
-                    <label class="form-label">Photo </label>
-                    <input type="file" name="gallery_image" id="gallery_image_inp" class="form-control shadow-none" aria-describedby="emailHelp" required>
+                    <label class="form-label">Photos </label>
+                    <input type="file" name="gallery_image" id="gallery_image_inp" class="form-control shadow-none" aria-describedby="emailHelp" 
+                    accept = ".jpg, .png, .webp, .jpeg" required>
 
                   </div>
                 </div>
