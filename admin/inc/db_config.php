@@ -14,10 +14,13 @@ if (!$conn) {
 function filtration($data)
 {
   foreach ($data as $key => $value) {
-    $data[$key] = trim($value); // to remove spaces
-    $data[$key] = stripslashes($value); //to remove backslashes
-    $data[$key] = htmlspecialchars($value); // to convert special chars into html entity
-    $data[$key] = strip_tags($value); //to remove html tags
+    $value = trim($value); // to remove spaces
+    $value = stripslashes($value); //to remove backslashes
+    $value = strip_tags($value); //to remove html tags
+    $value = htmlspecialchars($value); // to convert special chars into html entity
+  
+    $data[$key] = $value;
+  
   }
   return $data;
 }

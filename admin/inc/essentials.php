@@ -31,3 +31,4 @@ function alert($type, $msg)
         </div>
         alert;
 }
+//<<<alert alert;heredoc signifies block of text . useful  to include large amount of text,sql queries without having to escape special characters

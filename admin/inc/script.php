@@ -11,4 +11,22 @@
     `;
     document.body.append(element);
   }
-</script>
+
+
+  function setActive(){
+    let dashboard_menu = document.getElementById('dashboard-menu');
+    let a_tag = dashboard_menu.getElementsByTagName('a');
+
+    for(i=0;i<a_tag.length;i++){
+      let file = a_tag[i].href.split('/').pop();
+      let file_name = file.split('.')[0];
+
+      if(document.location.href.indexOf(file_name)>=0){
+        a_tag[i].classList.add('active');
+      }
+    }
+
+  }
+  setActive();
+
+  </script>
