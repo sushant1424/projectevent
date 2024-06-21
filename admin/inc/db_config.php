@@ -25,6 +25,12 @@ function filtration($data)
   return $data;
 }
 
+function selectAll($table){
+  $conn = $GLOBALS['conn'];
+  $res = mysqli_query($conn,"SELECT *  FROM $table");
+  return $res;
+}
+
 function select($sql, $values, $datatypes)
 {
   $conn = $GLOBALS['conn'];
@@ -60,6 +66,46 @@ function update($sql, $values, $datatypes)
     }
   } else {
     die("Query cannot be prepared - UPDATE");
+  }
+}
+
+
+function insert($sql, $values, $datatypes)
+{
+  $conn = $GLOBALS['conn'];
+  if ($stmt = mysqli_prepare($conn, $sql)) {//prepares sql statement for execution
+    mysqli_stmt_bind_param($stmt, $datatypes, ...$values); //... is splat operator allows arbitary number of parameters
+    if (mysqli_stmt_execute(($stmt))) {
+      $res = mysqli_stmt_affected_rows($stmt);
+      mysqli_stmt_close($stmt);
+
+      return $res;
+    } else {
+      mysqli_stmt_close($stmt);
+      die("Query cannot be executed - INSERT");
+    }
+  } else {
+    die("Query cannot be prepared - INSERT");
+  }
+}
+
+
+function delete($sql, $values, $datatypes)
+{
+  $conn = $GLOBALS['conn'];
+  if ($stmt = mysqli_prepare($conn, $sql)) {//prepares sql statement for execution
+    mysqli_stmt_bind_param($stmt, $datatypes, ...$values); //... is splat operator allows arbitary number of parameters
+    if (mysqli_stmt_execute(($stmt))) {
+      $res = mysqli_stmt_affected_rows($stmt);
+      mysqli_stmt_close($stmt);
+
+      return $res;
+    } else {
+      mysqli_stmt_close($stmt);
+      die("Query cannot be executed - DELETE");
+    }
+  } else {
+    die("Query cannot be prepared - DELETE");
   }
 }
 
