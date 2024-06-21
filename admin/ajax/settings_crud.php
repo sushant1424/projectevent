@@ -45,3 +45,6 @@ if (isset($_POST['update_contact'])) {
   $res = update($q, $values, 'sssssssssi');
   echo $res;
 }
+
+
+
