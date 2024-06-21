@@ -143,26 +143,7 @@ adminLogin();
           </div>
         </div>
 
-        <!-- Shutdown section -->
-        <div class="card border-0 shadow-sm mb-4">
-          <div class="card-body">
-            <div class="d-flex align-items-center justify-content-between mb-3">
-              <h5 class="card-title m-0">Shutdown Website</h5>
-              <div class="form-check form-switch">
-                <form>
-                  <input onchange="update_shutdown(this.value)" class="form-check-input" type="checkbox" role="switch" id="shutdown-toggle">
-
-                </form>
-
-              </div>
-
-            </div>
-
-            <p class="card-text">
-              No any actions can be taken place by user when shutdown.
-            </p>
-          </div>
-        </div>
+        
 
 
         <!-- contact model -->
@@ -246,6 +227,37 @@ adminLogin();
           </div>
         </div>
 
+       
+
+        <!-- Team Settings Modal -->
+        <div class="modal fade" id="teamSettings" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <form id="teamSettings_form">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5">Add Team </h1>
+                </div>
+                <div class="modal-body">
+                  <div class="mb-3">
+                    <label class="form-label">Name: </label>
+                    <input type="text" name="team_name" id="team_name_inp" class="form-control shadow-none" aria-describedby="emailHelp" required>
+                  </div>
+
+                  <div class=" mb-3">
+                    <label class="form-label">Picture: </label>
+                    <input type="file" name="team_picture" id="team_picture_inp" class="form-control shadow-none" aria-describedby="emailHelp" required accept=".jpg, .webp, .png, .jpeg">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" onclick="team_name.value='' , team_picture.value =''" class="btn text-secondary shadow-none" data-bs-dismiss="modal">Cancel</button>
+                  <button type="submit" class="btn custom-bg">Save Changes</button>
+                </div>
+              </div>
+            </form>
+
+          </div>
+        </div>
+
 
 
       </div>
@@ -255,7 +267,7 @@ adminLogin();
   require('inc/script.php');
   ?>
   <script src="scripts/settings.js"></script>
-  
+
 </body>
 
 </html>
