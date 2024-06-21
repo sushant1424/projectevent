@@ -12,7 +12,11 @@
   include('header.php');
   ?>
 
-  
+  <?php
+   $contact_query = "SELECT * FROM `contact_details` WHERE `id`=?";
+   $values = [1];
+   $contact_result = mysqli_fetch_assoc(select($contact_query,$values,'i'));
+  ?>
 
   <h2 class="mt-3 pt-4 text-center fw-bold ">Contact Us</h2>
   <div class="container">
@@ -34,35 +38,52 @@
 
       </div>
       <div class="col-lg-6 col-md-6 mt-3 shadow p-5">
-        <form action="">
+        <form method = "POST">
           <h5 class="mb-5">Send Us Message!</h5>
           <div class="mb-3">
             <label class="form-label" style="font-weight: 500;">Name: </label>
-            <input type="text" class="form-control shadow-none" aria-describedby="emailHelp">
+            <input type="text" name="name" required class="form-control shadow-none" aria-describedby="emailHelp">
           </div>
           <div class="mb-3">
             <label class="form-label" style="font-weight: 500;">Email: </label>
-            <input type="email" class="form-control shadow-none" aria-describedby="emailHelp">
+            <input type="email" name="email" required class="form-control shadow-none" aria-describedby="emailHelp">
           </div>
           <div class="mb-3">
             <label class="form-label" style="font-weight: 500;">Subject: </label>
-            <input type="text" class="form-control shadow-none" aria-describedby="emailHelp">
+            <input type="text" name="subject" required class="form-control shadow-none" aria-describedby="emailHelp">
           </div>
 
           <div class="col-md-12 p-0 mb-3">
             <label class="form-label" style="font-weight: 500;">Message: </label>
-            <textarea class="form-control shadow-none" rows="3"></textarea>
+            <textarea name="message" required class="form-control shadow-none" rows="3"></textarea>
 
           </div>
 
           <div>
-            <button type="submit" class="btn btn-dark shadow-none mt-5">Send</button>
+            <button type="submit"name="contact_send" class="btn btn-dark shadow-none mt-5">Send</button>
           </div>
         </form>
       </div>
     </div>
   </div>
   </div>
+
+  <?php
+  if(isset($_POST['contact_send'])){
+    $frm_data = filtration($_POST);
+
+    $q = "INSERT INTO `user_query`( `name`, `email`, `subject`, `message`) VALUES (?,?,?,?)";
+    $values = [$frm_data['name'],$frm_data['email'],$frm_data['subject'],$frm_data['message']];
+
+    $res = insert($q,$values,"ssss");
+    if($res == 1){
+      alert('success','message sent');
+    }
+    else{
+      alert('error','problem occured');
+    }
+  }
+  ?>
   <?php
   include('footer.php');
   ?>

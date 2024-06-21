@@ -8,33 +8,38 @@
 </head>
 
 <body>
+  <?php
+  $contact_query = "SELECT * FROM `contact_details` WHERE `id`=?";
+  $settings_query = "SELECT * FROM `settings` WHERE `id`=?";
+  $values = [1];
+  $contact_result = mysqli_fetch_assoc(select($contact_query, $values, 'i'));
+  $settings_result = mysqli_fetch_assoc(select($settings_query, $values, 'i'));
+  ?>
 
   <div class="container-fluid mt-5 px-3 py-2" style="background-color:#f0ead2  ;">
     <div class="row">
       <div class="col-lg-6 p-4">
-        <h4 class="fw-bold mb-2 fs-3">Upscale Events</h4>
-        <p>Elevate Your events and make you memories long last.</p>
+        <h4 class="fw-bold mb-2 fs-3"><?php echo $settings_result['website_title']; ?></h4>
+        <p><?php echo  $settings_result['website_info']; ?></p>
       </div>
       <div class="col-lg-4 p-4">
-        <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Home</a><br>
-        <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">About Us</a><br>
-        <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Contact</a><br>
-        <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Services</a><br>
-        <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Events</a>
-
-
+        <a href="index.php" class="d-inline-block mb-2 text-dark text-decoration-none">Home</a><br>
+        <a href="about.php" class="d-inline-block mb-2 text-dark text-decoration-none">About Us</a><br>
+        <a href="contact.php" class="d-inline-block mb-2 text-dark text-decoration-none">Contact</a><br>
+        <a href="services.php" class="d-inline-block mb-2 text-dark text-decoration-none">Services</a><br>
+        <a href="events.php" class="d-inline-block mb-2 text-dark text-decoration-none">Events</a>
       </div>
       <div class="col-lg-2 p-4">
         <h5 class="mb-3">Follow Us:</h5>
-          <?php
-          if($contact_result['insta']!= ''){
-            echo <<<data
+        <?php
+        if ($contact_result['insta'] != '') {
+          echo <<<data
             <a href="$contact_result[insta]" class="d-inline-block mb-3 text-dark fs-5 me-2">
             <i class="bi bi-instagram me-1"></i></a>
             data;
-          }
-          ?>
-        
+        }
+        ?>
+
         <a href="$contact_result[fb]" class="d-inline-block mb-3 text-dark fs-5 me-2">
           <i class="bi bi-facebook me-1"></i></a>
         <a href="$contact_result[twitter]" class="d-inline-block mb-3 text-dark fs-5 me-2">
@@ -48,53 +53,158 @@
 
 </body>
 
-
-
-
-
 <!-- bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-<!-- swiperjs -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
 <script>
-  var swiper = new Swiper(".mySwiper", {
-    effect: "coverflow",
-    grabCursor: true,
-    centeredSlides: true,
-    slidesPerView: "auto",
-    coverflowEffect: {
-      rotate: 50,
-      stretch: 0,
-      depth: 100,
-      modifier: 1,
-      slideShadows: true,
-    },
-    loop: true,
-    autoplay: {
-      delay: 1500,
-      disableOnInteraction: false,
+  function alert(type, msg, position = 'body') {
+    let bs_class = (type == 'success') ? 'alert-success' : 'alert-danger';
+    let element = document.createElement('div');
+    element.innerHTML = `
+    <div class="alert ${bs_class} alert-dismissible fade show " role="alert">
+        <strong class="me-3">${msg}</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    `;
+
+    if (position == 'body') {
+      document.body.append(element);
+      element.classList.add('custom-alert');
+
+    } else {
+      document.getElementById(position).appendChild(element);
     }
+    setTimeout(remAlert, 2000);
 
-  });
-</script>
+  }
 
-<script>
-  function setActive(){
+  function remAlert() {
+    document.getElementsByClassName('alert')[0].remove();
+  }
+
+  function setActive() {
     let navbar = document.getElementById('nav-bar');
     let a_tag = navbar.getElementsByTagName('a');
 
-    for(i=0;i<a_tag.length;i++){
+    for (i = 0; i < a_tag.length; i++) {
       let file = a_tag[i].href.split('/').pop();
       let file_name = file.split('.')[0];
 
-      if(document.location.href.indexOf(file_name)>=0){
+      if (document.location.href.indexOf(file_name) >= 0) {
         a_tag[i].classList.add('active');
       }
     }
 
   }
+
+  let user_register = document.getElementById('user_register');
+
+  user_register.addEventListener('submit', function(e) {
+    e.preventDefault();
+    add_user();
+  });
+
+  function add_user() {
+    let data = new FormData();
+
+    data.append('username', user_register.elements['username'].value);
+    data.append('email', user_register.elements['email'].value);
+    data.append('password', user_register.elements['password'].value);
+    data.append('confirm_pass', user_register.elements['confirm_pass'].value);
+    data.append('phone', user_register.elements['phone'].value);
+    // data.append('photo', user_register.elements['photo'].files[0]);
+    data.append('address', user_register.elements['address'].value);
+    data.append('register', '');
+
+    var myModal = document.getElementById('registermodal');
+    var modal = bootstrap.Modal.getInstance(myModal);
+    modal.hide();
+
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', 'ajax/login_register.php', true);
+
+
+    xhr.onload = function() {
+      if (this.responseText == 'pass_mismatch') {
+        alert('error', "Passwords do not match");
+      } else if (this.responseText == 'email_already') {
+        alert('error', "Email already exists");
+      } else if (this.responseText == 'phone_already') {
+        alert('error', "Phone number already exists");
+      }
+      // else if (this.responseText == 'inv_img') {
+      //     alert('error',"Invalid photo format");
+      // } 
+      // else if (this.responseText == 'upd_failed') {
+      //     alert('error', "Uploading image failed");
+      // }
+      else if (this.responseText == 'ins_failed') {
+        alert('error', "Registration failed");
+      } else {
+        alert('success', "Registration Successful");
+        user_register.reset();
+      }
+    }
+    xhr.send(data);
+  }
+
+
+  let login_form = document.getElementById('login_form');
+  login_form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    login_user();
+  });
+
+  function login_user() {
+    let data = new FormData();
+
+    data.append('email_mobile', login_form.elements['email_mobile'].value);
+    data.append('password', login_form.elements['password'].value);
+
+    data.append('login', '');
+
+    var myModal = document.getElementById('loginmodal');
+    var modal = bootstrap.Modal.getInstance(myModal);
+    modal.hide();
+
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', 'ajax/login_register.php', true);
+
+
+    xhr.onload = function() {
+      if (this.responseText == 'inv_email_mobile') {
+        alert('error', "Invalid email or mobile");
+      } else if (this.responseText == 'not_verified') {
+        alert('error', "Email is not verified");
+      } else if (this.responseText == 'inactive') {
+        alert('error', 'You are banned');
+      } else if (this.responseText == 'inv_pass') {
+        alert('error', 'Incorrect Password');
+      } else {
+        let page = window.location.href.split('/').pop().split('?').shift();
+        if (page == 'event_details.php') {
+          window.location = window.location.href;
+        } else {
+          window.location = window.location.pathname;
+
+        }
+
+      }
+
+
+    }
+    xhr.send(data);
+
+  }
+
+  function checkLogin(status, event_id) {
+    if (status) {
+      window.location.href = 'confirm_booking.php?id=' + event_id;
+    } else {
+      alert('error', 'Please login first');
+    }
+  }
+
   setActive();
 </script>
 
